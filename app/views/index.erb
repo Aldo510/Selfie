@@ -1,0 +1,33 @@
+<h1>Bienvenido a Sinatra!</h1>
+<p>Este es un esqueleto de sinatra que armamos para ti</p>
+<h1>Welcome to Selfie!</h1>
+
+<!--Verificar que sea post, y que tenga el atributo enctype-->
+<form method="post" enctype='multipart/form-data' action="upload">
+  <!--# Verificar que name corresponda al nombre/campo del modelo-->
+  <input type='file' name='photo[photo]'>
+  <% if @photo %>
+    <img src="<%= @photo %>">
+  <% end %>
+  <br/>
+  <input type='submit' value='Upload!'>
+</form>
+
+<ul>
+  <% if @photos %>
+    <% @photos.each do |photo| %>
+      <div> 
+        <!--agarrar la foto que se guarda con la extención thumb y mostrarla-->
+        <img src="<%= photo.photo_url(:thumb) %>">
+      </div>
+    <% end %>
+  <% end %>
+</ul>
+<hr>
+<% if @fotos %>
+  <% @fotos.each do |f| %>
+  <!--Para mostrar las imagenes se ponen en el src la ruta entre formato de ruby embebido-->
+  <!--Con el .thumb se muestra la foto que se guarda en el formato por default de cada foto que se guarda-->
+    <li><img src="<%= f.photo.thumb %>"/></li>
+  <% end %>
+<% end %>
